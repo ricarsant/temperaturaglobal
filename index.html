@@ -108,17 +108,7 @@
 
   </body>
 <script>
-/*
-var svg = d3.select("svg"),
-    margin = {top: 20, right: 20, bottom: 30, left: 50},
-    width = +svg.attr("width") - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-*/
-    //console.log(margin,width,height);
-
- //890 450
 var width = 800;
 var height = 500;
 var margin = 100;
@@ -126,31 +116,29 @@ var duration = 250;
 var maximo = 0;
 var minimo = 0;
 
-d3.csv("https://raw.githubusercontent.com/ricarsant/temperaturaglobal/master/globaltemp.csv", function(d) {
- // d.date = parseTime(d.date);
-  //d.close = +d.close;
+d3.csv("globaltemp.csv", function(d) {
+ 
  return d;
 }, function(error, data) {
   if (error) throw error;
 
-console.log(data);
-  //console.log("llaves toa", d3.keys(data[01]).slice(1,11));
+
+  
 	 var llaves  = d3.keys(data[0]);
 
 
 		  data.forEach(function(d) {
-		  	//var llaves=d3.keys(d);
-		  //	console.log(llaves,llaves.length);
+	
 
 		  	for (i=0; i<llaves.length;i++){
 		  		llave = llaves[i];
 
 		  		if(llave!="Year"){
-		  			//d[llave] = Math.floor(+d[llave])
+		  			
 		  			d[llave] = Math.floor(+d[llave]*100);
 		  			if(minimo>d[llave]){minimo = d[llave]; }
 		  			if(maximo<d[llave]){maximo = d[llave]; }
-		  		//console.log(llave, d[llave])
+		  		
 		  		}
 		  		else{
 		  			d[llave] = +d[llave];
@@ -160,13 +148,6 @@ console.log(data);
 		 });
 
 
-//console.log("data cambiada", data);
-
-//llaves = d3.keys(data[0]);
-
-//console.log ("llaave", llaves);
-//datosok = new Object();
-//datos1 = new Object();
 
 objo = [];
 
@@ -178,10 +159,10 @@ data.forEach(function(d) {
 	datosok = new Object();
 	objo1=[];
 	objoy =[];
-	//datos1 = new Object();
+	
 
 datosok.Year = d.Year;
-//datosok.values =  d.Jan;
+
 objoy.push(datosok);
 
 const values =[];
@@ -198,29 +179,11 @@ objo1.push(datos1);
 }
 
 
-//console.log (datos1);
-//values.push (datos1);
-
-//console.log("valore ",values);
-
 
 }  //fin for interno por meses
 datosok.values =objo1;
 fulldata.push(datosok);
 
-//console.log("Dios ",datosok );
-
-
-//var newtotal = objoy.concat(objo1)
-
-//console.log ("conjuntos",objo1);
-//fulldata.push(newtotal);
-//console.log("valores ", values);
-//datosok.values = datos1;
-
-//fulldata.push()
-
-//
 
 }
 
@@ -228,55 +191,27 @@ fulldata.push(datosok);
 
 
 
-//console.log("años",objo);
-
-//console.log("valores",fulldata );
-
-//var totalset = objo.concat(fulldata);
-
 data = fulldata;
-console.log("data " , data);
-console.log (minimo,maximo);
-/*
-d3.nest().key(d=>d.Year).entries(data);
-console.log("data filtrada", data);
-*/
 
-
-/* Ecala de Tiempo eje x */
-/*
-var x = d3.scaleTime()
-  .domain(d3.extent(data[0].values, d => d.mes))
-  .range([0, width-margin]);
-  */
-
-  //data.(d=>{console.log("valord",d.values[0])});
 
   dominiox = data[0].values
 llaves = llaves.slice(1,13);
-console.log("valor mes", llaves);
+
 
    var x = d3.scaleBand()
     .domain(llaves)
     .range([0, width]);
     
-   // console.log("xxxxxx", x("Jun"));
-
-  /*Escala de linea por valor eje Y*/
-
+ 
 var y = d3.scaleLinear()
   .domain([minimo, maximo])
   .range([height, 0]);
   
-console.log("xxxxxx", y(minimo), y(maximo));
-  /*Escala ordinal de color eventos mouse */
-//var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-
-/*Escala ordinal de color eventos mouse */
+ 
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-/* Se establecen  ejes x y  al svg*/
+
 var xAxis = d3.axisBottom(x).ticks(8);
 var yAxis = d3.axisLeft(y).ticks(8);
 
