@@ -36,7 +36,7 @@ AUTORES:
 •	La visualización es realizada por estudiante universidad Andes Colombia Ricardo Jaime Santacruz Garzon.
 
 LINKS:
-Link proyecto: https://github.com/ricarsant/temperaturaglobal
+Link proyecto: https://ricarsant.github.io/temperaturaglobal/.
 Link Screenshot: https://image.ibb.co/gzG6ZU/Screen_Shot_RSantacruz.jpg
 
 
