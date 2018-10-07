@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<haed>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<style>
+	svg {
+    font-family: Sans-Serif, Arial;
+}
+.line {
+  stroke-width: 2;
+  fill: none;
+}
+
+.axis path {
+  stroke: black;
+}
+
+.text {
+  font-size: 12px;
+}
+
+.title-text {
+  font-size: 12px;
+}
+	
+	</style>
+  </head>
+<body>
+   <h1>GLOBAL Land-Ocean Temperature</h1>
+  
+  <h2> Calentamiento global: Perido 1880 - 2018</h2>
+
+ <h2>Index in 0.01 degrees Celsius </h2>
+ <a href="https://data.giss.nasa.gov/gistemp/">Funte Datos: https://data.giss.nasa.gov/gistemp/</a>
+
+  
+    <div id="root"></div>
+
+    <div>
+    	<p style="margin: 0px;"><strong><span style="margin: 0px; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 12pt;">Abstracci&oacute;n WHAT- WHY &ndash; HOW :</span></strong></p>
+<p style="margin: 0px;">De acuerdo con Framework de Tamara Munzner:</p>
+<p style="margin: 0px;">&nbsp;</p>
+<p style="margin: 0px;"><strong>WHAT:</strong></p>
+<p style="margin: 0px 0px 0px 48px; text-indent: -18pt;"><span style="margin: 0px; font-family: Wingdings;"><span style="margin: 0px;">&Oslash;<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Data and Dataset Types:</span></p>
+<p style="margin: 0px 0px 0px 96px; text-indent: -18pt;"><span style="margin: 0px; font-family: Wingdings;"><span style="margin: 0px;">&egrave; </span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Tables &ndash; Items &ndash; Atributes:</span></p>
+<p style="margin: 0px 0px 0px 144px; text-indent: -18pt;"><span style="margin: 0px; font-family: 'Courier New';"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Data Set con 139 &Iacute;tems y 13 Atributos.</span></p>
+<p style="margin: 0px 0px 0px 144px; text-indent: -18pt;"><span style="margin: 0px; font-family: 'Courier New';"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Atributos usados en la Visualizaci&oacute;n:</span></p>
+<p style="margin: 0px 0px 0px 192px; text-indent: -18pt;"><span style="margin: 0px; font-family: 'Courier New';"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">A&ntilde;o:<span style="margin: 0px;">&nbsp; </span>Ordenado&ndash; Secuencia &ndash; Cuantitativo</span></p>
+<p style="margin: 0px 0px 0px 192px; text-indent: -18pt;"><span style="margin: 0px; font-family: 'Courier New';"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">12 atributos: Correspondiente a las temperaturas por meses del a&ntilde;o.: Ordenado &ndash; Div&eacute;rgete -Cuantitativo. </span></p>
+<p style="margin: 0px 0px 0px 192px;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 48px; text-indent: -18pt;"><span style="margin: 0px; font-family: Wingdings;"><span style="margin: 0px;">&Oslash;<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Cada registro corresponde a un a&ntilde;o y a las temperaturas registradas por mes en ese a&ntilde;o.</span></p>
+<p style="margin: 0px 0px 0px 168px;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 192px;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 192px;">&nbsp;</p>
+<p style="margin: 0px;"><strong>WHY:</strong></p>
+<p style="margin: 0px 0px 0px 48px; text-indent: -18pt;"><span style="margin: 0px; line-height: 107%; font-family: Wingdings; font-size: 10pt;"><span style="margin: 0px;">&Oslash;<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp; </span></span></span><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">Tarea Principal:</span></p>
+<p style="margin: 0px 0px 0px 47.2px;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">Mostrar el crecimiento sistem&aacute;tico en la temperatura global del planeta a&ntilde;o a a&ntilde;o.</span></p>
+<p style="margin: 0px 0px 0px 47.2px;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 47.2px;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">De acuerdo con el framework de Tamara, la visualizaci&oacute;n logra el objetivo mediante:</span></p>
+<p style="margin: 0px 0px 0px 47.2px;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 95.2px; text-indent: -18pt;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Courier New'; font-size: 11.5pt;"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">Present -&gt; Trends.</span></p>
+<p style="margin: 0px 0px 0px 95.2px; text-indent: -18pt;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Courier New'; font-size: 11.5pt;"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">Search -&gt; Locate -&gt; Outliers.</span></p>
+<p style="margin: 0px 0px 0px 95.2px; text-indent: -18pt;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Courier New'; font-size: 11.5pt;"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">Query -&gt; Summarize -&gt; Features.</span></p>
+<p style="margin: 0px 0px 0px 95.2px; text-indent: -18pt;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Courier New'; font-size: 11.5pt;"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">Query - &gt; Identify -&gt; Similarity.</span></p>
+<p style="margin: 0px 0px 0px 47.2px;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 47.2px;"><strong><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">Insght:</span></strong><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;"> El calentamiento global es evidente y es necesario tomar conciencia para detener esta situaci&oacute;n.</span></p>
+<p style="margin: 0px; text-align: justify;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">&nbsp;</span></p>
+<p style="margin: 0px; text-align: justify;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 48px; text-indent: -18pt;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: Wingdings; font-size: 11.5pt;"><span style="margin: 0px;">&Oslash;<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp; </span></span></span><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">Tarea Secundaria:</span></p>
+<p style="margin: 0px 0px 0px 48px; text-align: justify;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">Mostrar que a pesar de a ver decrementos en la temperatura en ciertos periodos, la tendencia agregada es en alza.</span></p>
+<p style="margin: 0px 0px 0px 48px; text-align: justify;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 47.2px;"><strong><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">Insght</span></strong><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">: Se ve que, para los &uacute;ltimos a&ntilde;os, y en especial para 2018, se evidencian temperatura a la baja. Como resultado de todas las medidas adoptadas a nivel global.</span></p>
+<p style="margin: 0px 0px 0px 48px; text-align: justify;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">&nbsp;</span></p>
+<p style="margin: 0px; text-align: justify;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 47.2px;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">De acuerdo con el framework de Tamara, la visualizaci&oacute;n logra el objetivo mediante:</span></p>
+<p style="margin: 0px 0px 0px 47.2px;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 95.2px; text-indent: -18pt;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Courier New'; font-size: 11.5pt;"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">Discover -&gt; Outliers.</span></p>
+<p style="margin: 0px 0px 0px 95.2px; text-indent: -18pt;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Courier New'; font-size: 11.5pt;"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">Serach -&gt; Explore -&gt; Extremes.</span></p>
+<p style="margin: 0px 0px 0px 47.2px;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">&nbsp;</span></p>
+<p style="margin: 0px; text-align: justify;"><span style="margin: 0px; color: #2c2d30; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 11.5pt;">&nbsp;</span></p>
+<p style="margin: 0px;">&nbsp;</p>
+<p style="margin: 0px;"><strong>HOW:</strong></p>
+<p style="margin: 0px 0px 0px 48px; text-indent: -18pt;"><span style="margin: 0px; font-family: Wingdings;"><span style="margin: 0px;">&Oslash;<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Marcas:</span></p>
+<p style="margin: 0px 0px 0px 95.2px; text-indent: -18pt;"><span style="margin: 0px; font-family: 'Courier New';"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">L&iacute;neas &ndash; Puntos.</span></p>
+<p style="margin: 0px 0px 0px 95.2px;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 48px; text-indent: -18pt;"><span style="margin: 0px; font-family: Wingdings;"><span style="margin: 0px;">&Oslash;<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Canales:</span></p>
+<p style="margin: 0px 0px 0px 95.2px; text-indent: -18pt;"><span style="margin: 0px; font-family: 'Courier New';"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Magnitud:</span></p>
+<p style="margin: 0px 0px 0px 47.2px; text-indent: 35.4pt;"><span style="margin: 0px; font-family: 'Arial',sans-serif;"><span style="margin: 0px;">&nbsp;</span>Atributos ordenados:</span></p>
+<p style="margin: 0px 0px 0px 94.4px; text-indent: 35.4pt;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">De posici&oacute;n Vertical escala Lineal: Valores Temperatura.</span></p>
+<p style="margin: 0px;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 95.2px; text-indent: -18pt;"><span style="margin: 0px; font-family: 'Courier New';"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Categ&oacute;rico</span></p>
+<p style="margin: 0px 0px 0px 47.2px; text-indent: 35.4pt;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">Atributo derivado ordinal mes del a&ntilde;o:</span></p>
+<p style="margin: 0px 0px 0px 47.2px; text-indent: 35.4pt;"><span style="margin: 0px; font-family: 'Arial',sans-serif;"><span style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>De posici&oacute;n horizontal escala Ordinal, para una domino discreto: meses a&ntilde;o.</span></p>
+<p style="margin: 0px 0px 0px 95.2px; text-indent: -18pt;"><span style="margin: 0px; font-family: 'Courier New';"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Categ&oacute;rico:</span></p>
+<p style="margin: 0px 0px 0px 95.2px;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">Atributo Categ&oacute;rico:</span></p>
+<p style="margin: 0px 0px 0px 94.4px; text-indent: 35.4pt;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">Color HUE: identificaci&oacute;n del a&ntilde;o correspondiente.</span></p>
+<p style="margin: 0px;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">&nbsp;</span></p>
+<p style="margin: 0px 0px 0px 48px; text-indent: -18pt;"><span style="margin: 0px; font-family: Wingdings;"><span style="margin: 0px;">&Oslash;<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Encode -&gt; Navigate -&gt; Select.</span></p>
+<p style="margin: 0px 0px 0px 96px; text-indent: -18pt;"><span style="margin: 0px; font-family: 'Courier New';"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Interactividad mediante desplazamiento del mouse <span style="margin: 0px;">&nbsp;</span>sobre cualquier &aacute;rea de la visualizaci&oacute;n.</span></p>
+<p style="margin: 0px;"><span style="margin: 0px; font-family: 'Arial',sans-serif;"><span style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></p>
+<p style="margin: 0px 0px 0px 48px; text-indent: -18pt;"><span style="margin: 0px; font-family: Wingdings;"><span style="margin: 0px;">&Oslash;<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Los datos son transformados con d3 generando un arreglo de objetos, para uso m&aacute;s eficiente en el path layout .</span></p>
+<p style="margin: 0px;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">&nbsp;</span></p>
+<p style="margin: 0px;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">&nbsp;</span></p>
+<p style="margin: 0px;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">&nbsp;</span></p>
+    </div>
+   
+
+  </body>
+<script>
+/*
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 50},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom,
+    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+*/
+    //console.log(margin,width,height);
+
+ //890 450
+var width = 800;
+var height = 500;
+var margin = 100;
+var duration = 250;
+var maximo = 0;
+var minimo = 0;
+
+d3.csv("globaltemp.csv", function(d) {
+ // d.date = parseTime(d.date);
+  //d.close = +d.close;
+ return d;
+}, function(error, data) {
+  if (error) throw error;
+
+console.log(data);
+  //console.log("llaves toa", d3.keys(data[01]).slice(1,11));
+	 var llaves  = d3.keys(data[0]);
+
+
+		  data.forEach(function(d) {
+		  	//var llaves=d3.keys(d);
+		  //	console.log(llaves,llaves.length);
+
+		  	for (i=0; i<llaves.length;i++){
+		  		llave = llaves[i];
+
+		  		if(llave!="Year"){
+		  			//d[llave] = Math.floor(+d[llave])
+		  			d[llave] = Math.floor(+d[llave]*100);
+		  			if(minimo>d[llave]){minimo = d[llave]; }
+		  			if(maximo<d[llave]){maximo = d[llave]; }
+		  		//console.log(llave, d[llave])
+		  		}
+		  		else{
+		  			d[llave] = +d[llave];
+		  		}
+		  		
+		  	}
+		 });
+
+
+//console.log("data cambiada", data);
+
+//llaves = d3.keys(data[0]);
+
+//console.log ("llaave", llaves);
+//datosok = new Object();
+//datos1 = new Object();
+
+objo = [];
+
+
+fulldata =[];
+var datostido = new Object();
+
+data.forEach(function(d) {
+	datosok = new Object();
+	objo1=[];
+	objoy =[];
+	//datos1 = new Object();
+
+datosok.Year = d.Year;
+//datosok.values =  d.Jan;
+objoy.push(datosok);
+
+const values =[];
+for(i=0;i<llaves.length;i++){
+
+
+	datos1 = new Object();
+	llave = llaves[i];
+	if(llave!="Year"){
+	
+datos1.mes =llave;
+datos1.valor = d[llave];
+objo1.push(datos1);
+}
+
+
+//console.log (datos1);
+//values.push (datos1);
+
+//console.log("valore ",values);
+
+
+}  //fin for interno por meses
+datosok.values =objo1;
+fulldata.push(datosok);
+
+//console.log("Dios ",datosok );
+
+
+//var newtotal = objoy.concat(objo1)
+
+//console.log ("conjuntos",objo1);
+//fulldata.push(newtotal);
+//console.log("valores ", values);
+//datosok.values = datos1;
+
+//fulldata.push()
+
+//
+
+}
+
+	);  //fin de todos los datos
+
+
+
+//console.log("años",objo);
+
+//console.log("valores",fulldata );
+
+//var totalset = objo.concat(fulldata);
+
+data = fulldata;
+console.log("data " , data);
+console.log (minimo,maximo);
+/*
+d3.nest().key(d=>d.Year).entries(data);
+console.log("data filtrada", data);
+*/
+
+
+/* Ecala de Tiempo eje x */
+/*
+var x = d3.scaleTime()
+  .domain(d3.extent(data[0].values, d => d.mes))
+  .range([0, width-margin]);
+  */
+
+  //data.(d=>{console.log("valord",d.values[0])});
+
+  dominiox = data[0].values
+llaves = llaves.slice(1,13);
+console.log("valor mes", llaves);
+
+   var x = d3.scaleBand()
+    .domain(llaves)
+    .range([0, width]);
+    
+   // console.log("xxxxxx", x("Jun"));
+
+  /*Escala de linea por valor eje Y*/
+
+var y = d3.scaleLinear()
+  .domain([minimo, maximo])
+  .range([height, 0]);
+  
+console.log("xxxxxx", y(minimo), y(maximo));
+  /*Escala ordinal de color eventos mouse */
+//var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+
+/*Escala ordinal de color eventos mouse */
+var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+/* Se establecen  ejes x y  al svg*/
+var xAxis = d3.axisBottom(x).ticks(8);
+var yAxis = d3.axisLeft(y).ticks(8);
+
+/* Adicion SVG */
+var svg = d3.select("#root").append("svg")
+  .attr("width", (width+margin)+"px")
+  .attr("height", (height+margin+margin)+"px")
+  .append('g')
+  .attr("transform", `translate(${margin}, ${margin})`);
+
+/* Linea entre años . valor */
+var line = d3.line()
+  .x(d => x(d.mes))
+  .y(d => y(d.valor));
+
+  let lines = svg.append('g')
+  .attr('class', 'lines');
+
+lines.selectAll('.line-group')
+  .data(data).enter()
+  .append('g')
+  .attr('class', 'line-group') 
+  
+/*evento on sobre la linea mustra pais*/  
+  .on("mouseover", function(d, i) {
+      svg.append("text")
+        .attr("class", "titulo")
+        .style("fill", color(i))        
+        .text("Year :" + d.Year)
+        //.attr("text-anchor", "middle")
+        .attr("x", (width-margin)/2)
+        .attr("y", 5);
+    })
+	
+	/*evento out salida borrar titulo*/
+  .on("mouseout", function(d) {
+      svg.select(".titulo").remove();
+    })
+
+	/*se agrega  path para cada elemento del arreglo values*/
+  .append('path')
+  .attr('class', 'line')  
+  .attr('d', d => line(d.values))
+  .style('stroke', (d, i) => color(i))
+  .style('opacity', '0.25')
+  
+  /*eventos on y out cambia la opacidad*/
+  .on("mouseover", function(d) {
+      d3.selectAll('.line')
+					.style('opacity', '0.1');
+      d3.selectAll('.circle')
+					.style('opacity', '3');
+      d3.select(this)
+        .style('opacity', '0.5')
+        .style("stroke-width", '3')
+        .style("cursor", "pointer");
+    })
+  .on("mouseout", function(d) {
+      d3.selectAll(".line")
+					.style('opacity', '0.2');
+      d3.selectAll('.circle')
+					.style('opacity', '0.85');
+      d3.select(this)
+        .style("stroke-width", '1')
+        .style("cursor", "none");
+    });
+
+/* Adiciona puntos a la lienea */
+lines.selectAll("circle-group")
+  .data(data).enter()
+  .append("g")
+  .style("fill", (d, i) => color(i))
+  .selectAll("circle")
+  .data(d => d.values).enter()
+  .append("g")
+  .attr("class", "circle")  
+  
+  /*evento on - valor cerca al punto*/
+  .on("mouseover", function(d) {
+      d3.select(this)     
+        .style("cursor", "pointer")
+        .append("text")
+        .attr("class", "text")
+        .text(`${d.valor}`)
+        .attr("x", d => x(d.mes)+10)
+        .attr("y", d => y(d.valor) - 10);
+    })
+	/*evento out remueve el valor*/
+  .on("mouseout", function(d) {
+      d3.select(this)
+        .style("cursor", "none")  
+        .transition()
+        .duration(duration)
+        .selectAll(".text").remove();
+    })
+	
+	/*adiciona el punto coordenada anio,valor */
+  .append("circle")
+  .attr("cx", d => x(d.mes))
+  .attr("cy", d => y(d.valor))
+  .attr("r", '1')
+  .style('opacity', '0.85')
+  .on("mouseover", function(d) {
+        d3.select(this)
+          .transition()
+          .duration(duration*10)
+          .attr("r", '2');
+      })
+    .on("mouseout", function(d) {
+        d3.select(this) 
+          .transition()
+          .duration(duration*10)
+          .attr("r", '1');  
+      });
+
+    /*Poner ejes */
+
+svg.append("g")
+  .attr("class", "x axis")
+  .attr("transform", `translate(0, ${height})`)
+  .call(xAxis);
+
+svg.append("g")
+  .attr("class", "y axis")
+  .call(yAxis)
+  .append('text')
+  .attr("y", 15)
+  .attr("x",20)
+  .attr("transform", "rotate(-90)")
+  .attr("fill", "#000")
+  .text("Temperatura C");
+
+
+  svg.append("g")
+  .append('text')
+  .attr("y", height+50)
+  .attr("x",10)
+  .style("fill","green")
+  .text("Deslice el  mouse sobre la grafica y encontrara las temperaturas del periodo.");
+
+
+
+});
+
+</script>
