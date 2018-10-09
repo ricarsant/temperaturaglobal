@@ -2,6 +2,8 @@
 <html>
 <haed>
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://unpkg.com/d3-simple-slider"></script>
+
 
 <style>
 	svg {
@@ -36,7 +38,8 @@
 
   
     <div id="root"></div>
-
+    <dir class="slise"></dir>
+<div class="slider"></div>
     <div>
     	<p style="margin: 0px;"><strong><span style="margin: 0px; line-height: 107%; font-family: 'Arial',sans-serif; font-size: 12pt;">Abstracci&oacute;n WHAT- WHY &ndash; HOW :</span></strong></p>
 <p style="margin: 0px;">De acuerdo con Framework de Tamara Munzner:</p>
@@ -116,6 +119,10 @@ var duration = 250;
 var maximo = 0;
 var minimo = 0;
 
+
+
+
+
 d3.csv("globaltemp.csv", function(d) {
  
  return d;
@@ -191,14 +198,63 @@ fulldata.push(datosok);
 
 
 
-data = fulldata;
+data = fulldata.slice(0,138);
 
 
   dominiox = data[0].values
+
 llaves = llaves.slice(1,13);
 
 
-   var x = d3.scaleBand()
+  
+
+ var slider = d3.sliderHorizontal()
+    .min(0)
+    .max(138)
+    .step(1)
+    .width(300)
+    .displayValue(false)
+    .on('end', val => {
+    	d3.select(".slise").text(val+1880);
+    	pinta(data.slice(0,val),llaves);
+      
+    });
+      
+
+ 
+
+d3.select(".slider").append("svg")
+    .attr("width", 500)
+    .attr("height", 100)
+    .append("g")
+    .attr("transform", "translate(30,10)")
+    .call(slider);
+
+pinta(data,llaves);
+
+
+
+});
+function pinta(data,llaves){
+
+	var width = 800;
+var height = 500;
+var margin = 100;
+var duration = 250;
+
+d3.select(".root").remove();
+
+var svg = d3.select("#root").append("svg")
+
+   .attr("class","root")
+  .attr("width", (width+margin)+"px")
+  .attr("height", (height+margin+margin)+"px")
+  .append('g')
+  .attr("transform", `translate(${margin}, ${margin})`);
+
+console.log(data.length);
+
+	   var x = d3.scaleBand()
     .domain(llaves)
     .range([0, width]);
     
@@ -216,18 +272,16 @@ var xAxis = d3.axisBottom(x).ticks(8);
 var yAxis = d3.axisLeft(y).ticks(8);
 
 /* Adicion SVG */
-var svg = d3.select("#root").append("svg")
-  .attr("width", (width+margin)+"px")
-  .attr("height", (height+margin+margin)+"px")
-  .append('g')
-  .attr("transform", `translate(${margin}, ${margin})`);
+
+
 
 /* Linea entre años . valor */
 var line = d3.line()
   .x(d => x(d.mes))
   .y(d => y(d.valor));
 
-  let lines = svg.append('g')
+
+   lines = svg.append('g')
   .attr('class', 'lines');
 
 lines.selectAll('.line-group')
@@ -243,7 +297,7 @@ lines.selectAll('.line-group')
         .text("Year :" + d.Year)
         //.attr("text-anchor", "middle")
         .attr("x", (width-margin)/2)
-        .attr("y", 5);
+        .attr("y", 80);
     })
 	
 	/*evento out salida borrar titulo*/
@@ -344,7 +398,6 @@ svg.append("g")
   .attr("fill", "#000")
   .text("Temperatura C");
 
-
   svg.append("g")
   .append('text')
   .attr("y", height+50)
@@ -354,6 +407,5 @@ svg.append("g")
 
 
 
-});
-
+}
 </script>
