@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <haed>
-<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="https://unpkg.com/d3-simple-slider"></script>
 
 
@@ -46,7 +46,7 @@
 <p style="margin: 0px;">&nbsp;</p>
 <p style="margin: 0px;"><strong>WHAT:</strong></p>
 <p style="margin: 0px 0px 0px 48px; text-indent: -18pt;"><span style="margin: 0px; font-family: Wingdings;"><span style="margin: 0px;">&Oslash;<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Data and Dataset Types:</span></p>
-<p style="margin: 0px 0px 0px 96px; text-indent: -18pt;"><span style="margin: 0px; font-family: Wingdings;"><span style="margin: 0px;">&egrave; </span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Tables &ndash; Items &ndash; Atributes:</span></p>
+<p style="margin: 0px 0px 0px 96px; text-indent: -18pt;"><span style="margin: 0px; font-family: Wingdings;"><span style="margin: 0px;">&egrave; </span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Temporal &ndash; Items &ndash; Atributes:</span></p>
 <p style="margin: 0px 0px 0px 144px; text-indent: -18pt;"><span style="margin: 0px; font-family: 'Courier New';"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Data Set con 139 &Iacute;tems y 13 Atributos.</span></p>
 <p style="margin: 0px 0px 0px 144px; text-indent: -18pt;"><span style="margin: 0px; font-family: 'Courier New';"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Atributos usados en la Visualizaci&oacute;n:</span></p>
 <p style="margin: 0px 0px 0px 192px; text-indent: -18pt;"><span style="margin: 0px; font-family: 'Courier New';"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">A&ntilde;o:<span style="margin: 0px;">&nbsp; </span>Ordenado&ndash; Secuencia &ndash; Cuantitativo</span></p>
@@ -99,7 +99,7 @@
 <p style="margin: 0px 0px 0px 95.2px;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">Atributo Categ&oacute;rico:</span></p>
 <p style="margin: 0px 0px 0px 94.4px; text-indent: 35.4pt;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">Color HUE: identificaci&oacute;n del a&ntilde;o correspondiente.</span></p>
 <p style="margin: 0px;"><span style="margin: 0px; font-family: 'Arial',sans-serif;">&nbsp;</span></p>
-<p style="margin: 0px 0px 0px 48px; text-indent: -18pt;"><span style="margin: 0px; font-family: Wingdings;"><span style="margin: 0px;">&Oslash;<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Encode -&gt; Navigate -&gt; Select.</span></p>
+<p style="margin: 0px 0px 0px 48px; text-indent: -18pt;"><span style="margin: 0px; font-family: Wingdings;"><span style="margin: 0px;">&Oslash;<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Encode -&gt; Arrange -&gt; Express.</span></p>
 <p style="margin: 0px 0px 0px 96px; text-indent: -18pt;"><span style="margin: 0px; font-family: 'Courier New';"><span style="margin: 0px;">o<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Interactividad mediante desplazamiento del mouse <span style="margin: 0px;">&nbsp;</span>sobre cualquier &aacute;rea de la visualizaci&oacute;n.</span></p>
 <p style="margin: 0px;"><span style="margin: 0px; font-family: 'Arial',sans-serif;"><span style="margin: 0px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span></p>
 <p style="margin: 0px 0px 0px 48px; text-indent: -18pt;"><span style="margin: 0px; font-family: Wingdings;"><span style="margin: 0px;">&Oslash;<span style="font: 7pt 'Times New Roman'; margin: 0px; font-size-adjust: none; font-stretch: normal;">&nbsp; </span></span></span><span style="margin: 0px; font-family: 'Arial',sans-serif;">Los datos son transformados con d3 generando un arreglo de objetos, para uso m&aacute;s eficiente en el path layout .</span></p>
@@ -123,38 +123,39 @@ var minimo = 0;
 
 
 
-d3.csv("globaltemp.csv", function(d) {
+d3.csv("globaltemp.csv").then( function(data) {
  
- return d;
-}, function(error, data) {
-  if (error) throw error;
+  //console.log(data);
+
+
+ // if (error) throw error;
 
 
   
-	 var llaves  = d3.keys(data[0]);
+   var llaves  = d3.keys(data[0]);
 
 
-		  data.forEach(function(d) {
-	
+      data.forEach(function(d) {
+  
 
-		  	for (i=0; i<llaves.length;i++){
-		  		llave = llaves[i];
+        for (i=0; i<llaves.length;i++){
+          llave = llaves[i];
 
-		  		if(llave!="Year"){
-		  			
-		  			d[llave] = Math.floor(+d[llave]*100);
-		  			if(minimo>d[llave]){minimo = d[llave]; }
-		  			if(maximo<d[llave]){maximo = d[llave]; }
-		  		
-		  		}
-		  		else{
-		  			d[llave] = +d[llave];
-		  		}
-		  		
-		  	}
-		 });
+          if(llave!="Year"){
+            
+            d[llave] = Math.floor(+d[llave]*100);
+            if(minimo>d[llave]){minimo = d[llave]; }
+            if(maximo<d[llave]){maximo = d[llave]; }
+          
+          }
+          else{
+            d[llave] = +d[llave];
+          }
+          
+        }
+     });
 
-
+ // console.log(data);
 
 objo = [];
 
@@ -163,10 +164,10 @@ fulldata =[];
 var datostido = new Object();
 
 data.forEach(function(d) {
-	datosok = new Object();
-	objo1=[];
-	objoy =[];
-	
+  datosok = new Object();
+  objo1=[];
+  objoy =[];
+  
 
 datosok.Year = d.Year;
 
@@ -176,10 +177,10 @@ const values =[];
 for(i=0;i<llaves.length;i++){
 
 
-	datos1 = new Object();
-	llave = llaves[i];
-	if(llave!="Year"){
-	
+  datos1 = new Object();
+  llave = llaves[i];
+  if(llave!="Year"){
+  
 datos1.mes =llave;
 datos1.valor = d[llave];
 objo1.push(datos1);
@@ -194,7 +195,7 @@ fulldata.push(datosok);
 
 }
 
-	);  //fin de todos los datos
+  );  //fin de todos los datos
 
 
 
@@ -215,8 +216,8 @@ llaves = llaves.slice(1,13);
     .width(300)
     .displayValue(false)
     .on('end', val => {
-    	d3.select(".slise").text(val+1880);
-    	pinta(data.slice(0,val),llaves);
+      d3.select(".slise").text(val+1880);
+      pinta(data.slice(0,val),llaves);
       
     });
       
@@ -230,11 +231,16 @@ d3.select(".slider").append("svg")
     .attr("transform", "translate(30,10)")
     .call(slider);
 
+
+
+
 pinta(data,llaves);
 
 
 
 });
+
+
 function pinta(data,llaves){
 
 	var width = 800;
@@ -252,7 +258,7 @@ var svg = d3.select("#root").append("svg")
   .append('g')
   .attr("transform", `translate(${margin}, ${margin})`);
 
-console.log(data.length);
+//console.log(data.length);
 
 	   var x = d3.scaleBand()
     .domain(llaves)
